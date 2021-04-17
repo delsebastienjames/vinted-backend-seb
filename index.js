@@ -10,7 +10,7 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-//const isAuthenticated = require("./middlewares/isAuthenticated");
+const isAuthenticated = require("./middlewares/isAuthenticated");
 
 // Connexion du serveur et de la base de données (BDD)
 mongoose.connect(process.env.MONGODB_URI, {

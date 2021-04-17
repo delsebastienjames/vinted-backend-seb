@@ -70,7 +70,7 @@ router.post("/offer/publish", isAuthenticated, async(req, res) => {
         await newOffer.save();
         //console.log(newOffer);
         // Répondre au client
-        res.status(200).json(newOffer);
+        //res.status(200).json(newOffer);
     } catch (error) {
         res.status(400).json({ error: error.message }); // status(400) Bad request
     }
@@ -122,7 +122,7 @@ router.get("/offers", async(req, res) => {
             page = 0;
         }
 
-        // Passer cer object dans le .find
+        // Passer cet object dans le .find
         const results = await Offer.find(filters)
             .sort(sort)
             // .populate("owner") // on voit presque tous les champs

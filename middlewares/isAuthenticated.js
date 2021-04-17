@@ -1,5 +1,4 @@
 // Importer les models
-
 //const Offer = require("../models/Offer");
 const User = require("../models/User");
 

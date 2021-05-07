@@ -95,14 +95,14 @@ router.get("/offers", async (req, res) => {
     }
 
     if (req.query.priceMin) {
-      filters.product_price = { $gte: Number(req.query.priceMin) }; // greater than or equal
+      filters.product_price = { $gte: Number(req.query.priceMin) }; // plus grand ou égal
     }
 
     if (req.query.priceMax) {
       if (filters.product_price) {
         filters.product_price.$lte = Number(req.query.priceMax);
       } else {
-        filters.product_price = { $lte: Number(req.query.priceMax) }; // lower than or equal
+        filters.product_price = { $lte: Number(req.query.priceMax) }; // plus petit ou égal
       }
     }
 

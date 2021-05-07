@@ -10,20 +10,20 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-const isAuthenticated = require("./middlewares/isAuthenticated");
+//const isAuthenticated = require("./middlewares/isAuthenticated");
 
 // Connexion du serveur et de la base de données (BDD)
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true, // unique : true du model User
-    //useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true, // unique : true du model User
+  //useFindAndModify: false,
 });
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // Importer les routes
@@ -33,9 +33,9 @@ app.use(userRoutes);
 app.use(offerRoutes);
 
 app.all("*", (req, res) => {
-    res.status(404).json({ error: "Cette route n'existe pas." });
+  res.status(404).json({ error: "Cette route n'existe pas." });
 });
 
 app.listen(process.env.PORT, () => {
-    console.log("Server Started");
+  console.log("Server Started");
 });

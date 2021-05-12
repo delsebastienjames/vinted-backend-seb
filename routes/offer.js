@@ -70,8 +70,9 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
     // Sauvegarder l'annonce dans la BDD (===> requête entre le serveur et la BDD)
     await newOffer.save();
     //console.log(newOffer);
-    // Répondre au client
-    //res.status(200).json(newOffer);
+
+    //Répondre au client
+    res.status(200).json(newOffer);
   } catch (error) {
     res.status(400).json({ error: error.message }); // status(400) Bad request
   }
@@ -89,8 +90,9 @@ router.get("/offers", async (req, res) => {
     // Déclarer un object vide
 
     let filters = {};
-    // Alimenter  cet object
+    // Alimenter  cet object en fonction des queries reçues
     if (req.query.title) {
+      // ajouter un clé product_name à filters
       filters.product_name = new RegExp(req.query.title, "i");
     }
 

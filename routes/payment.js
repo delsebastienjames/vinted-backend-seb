@@ -1,8 +1,10 @@
 const express = require("express");
 const formidable = require("express-formidable");
 const cors = require("cors");
+const createStripe = require("stripe");
 
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+/* clé stripe */
+const stripe = createStripe(process.env.STRIPE_API_SECRET);
 
 const app = express();
 app.use(formidable());
@@ -10,28 +12,21 @@ app.use(cors());
 
 app.post("/payment", async (req, res) => {
   try {
-    // Recevoir un stripeToken
-    // console.log(req.fields.stripeToken);
     // Envoyer le token à l'API Stripe
-    // Pour sécuriser au max les choses : chercher en BDD le prix du produit acheté
-    const response = await stripe.charges.create({
-      amount: 2000, // req.fields.price * 100
+    let { status } = await stripe.charges.create({
+      amount: req.fields.amount * 100,
       currency: "eur",
-      description: "La description du produit acheté",
-      source: req.fields.stripeToken,
+      description: `Paiement vinted pour : ${req.fields.title}`,
+      source: req.fields.token,
     });
     // Recevoir une réponse de l'API Stripe
     // console.log(response);
-    if (response.status === "succeeded") {
-      res.status(200).json({ message: "Paiement validé" });
-    } else {
-      res.status(400).json({ message: "An error occured" });
-    }
+
+    res.json({ status });
   } catch (error) {
+    console.log(error.message);
     res.status(400).json({ message: error.message });
   }
 });
 
-app.listen(3001, () => {
-  console.log("Server Started");
-});
+module.exports = router;

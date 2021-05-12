@@ -10,8 +10,6 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-//const isAuthenticated = require("./middlewares/isAuthenticated");
-
 // Connexion du serveur et de la base de données (BDD)
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -29,10 +27,10 @@ cloudinary.config({
 // Importer les routes
 const userRoutes = require("./routes/user"); // fichier routes user.js
 const offerRoutes = require("./routes/offer"); // fichier routes offer.js
-//const paymentRoutes = require("./routes/payment"); // fichier routes payment.js
+const paymentRoutes = require("./routes/payment"); // fichier routes payment.js
 app.use(userRoutes);
 app.use(offerRoutes);
-//app.use(paymentRoutes);
+app.use(paymentRoutes);
 
 app.all("*", (req, res) => {
   res.status(404).json({ error: "Cette route n'existe pas." });

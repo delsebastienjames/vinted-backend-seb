@@ -1,5 +1,5 @@
 const express = require("express");
-//const formidable = require("express-formidable");
+const formidable = require("express-formidable");
 
 const uid2 = require("uid2");
 const SHA256 = require("crypto-js/sha256"); //

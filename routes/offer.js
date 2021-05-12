@@ -1,6 +1,6 @@
 const express = require("express");
 const cloudinary = require("cloudinary").v2;
-//const formidable = require("express-formidable");
+const formidable = require("express-formidable");
 const mongoose = require("mongoose");
 
 const router = express.Router();

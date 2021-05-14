@@ -1,10 +1,7 @@
 const express = require("express");
 const formidable = require("express-formidable");
 const cors = require("cors");
-const createStripe = require("stripe");
-
-/* clé stripe */
-const stripe = createStripe(process.env.STRIPE_API_SECRET);
+const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
 
 const app = express();
 app.use(formidable());
@@ -13,14 +10,15 @@ app.use(cors());
 app.post("/payment", async (req, res) => {
   try {
     // Réception du token créer via l'API Stripe depuis le Frontend
-    const stripeToken = req.fields.stripeToken;
+    // const stripeToken = req.fields.stripeToken;
     // Créer la transaction
     // Envoyer le token à l'API Stripe
     const response = await stripe.charges.create({
       amount: req.fields.amount * 100,
       currency: "eur",
       description: `Paiement vinted pour : ${req.fields.title}`,
-      source: stripeToken,
+      // source: stripeToken,
+      source: req.fields.stripeToken,
     });
     // Recevoir une réponse de l'API Stripe
 

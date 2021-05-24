@@ -12,7 +12,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 
 // route en post
 router.post("/offer/publish", isAuthenticated, async (req, res) => {
-  //res.json("offer/publish");
+  res.json("offer/publish");
   //console.log(req.user);
   //console.log(req.fields);
   //console.log(req.files.picture.path);
@@ -80,9 +80,9 @@ router.post("/offer/publish", isAuthenticated, async (req, res) => {
 
 router.get("/offers", async (req, res) => {
   try {
-    //const offers = await Offer.find();
-    //const results = await Offer.find({
-    //product_price: { $lte: 200, $gte: 20 }, // prix entre 200 et 20
+    // const offers = await Offer.find();
+    // const results = await Offer.find({
+    // product_price: { $lte: 200, $gte: 20 }, // prix entre 200 et 20
     //})
     // .sort({ product_price: +1 })
     // .select("product_name product_price");
@@ -154,7 +154,7 @@ router.get("/offers", async (req, res) => {
 });
 
 router.get("/offer/:id", async (req, res) => {
-  //res.json(req.params);
+  res.json(req.params);
   try {
     const offer = await Offer.findById(req.params.id).populate(
       "owner",

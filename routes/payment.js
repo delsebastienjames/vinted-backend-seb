@@ -23,7 +23,7 @@ app.post("/payment", async (req, res) => {
     });
     // Recevoir une réponse de l'API Stripe
 
-    //console.log(response.status);
+    console.log(response.data);
 
     res.json(response.data);
   } catch (error) {

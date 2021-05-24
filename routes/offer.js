@@ -154,7 +154,6 @@ router.get("/offers", async (req, res) => {
 });
 
 router.get("/offer/:id", async (req, res) => {
-  res.json(req.params);
   try {
     const offer = await Offer.findById(req.params.id).populate(
       "owner",

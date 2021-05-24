@@ -12,6 +12,7 @@ app.post("/payment", async (req, res) => {
   try {
     // Réception du token créer via l'API Stripe depuis le Frontend
     //const stripeToken = req.fields.stripeToken;
+
     // Créer la transaction
     // Envoyer le token à l'API Stripe
     const { response } = await stripe.charges.create({

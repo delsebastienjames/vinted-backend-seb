@@ -19,7 +19,7 @@ app.post("/payment", async (req, res) => {
       amount: req.fields.amount * 100,
       currency: "eur",
       description: `Paiement vinted pour : ${req.fields.title}`,
-      source: req.fields.stripeToken,
+      source: stripeToken,
     });
     // Recevoir une réponse de l'API Stripe
 

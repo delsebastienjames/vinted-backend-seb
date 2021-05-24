@@ -11,15 +11,15 @@ app.use(cors());
 app.post("/payment", async (req, res) => {
   try {
     // Réception du token créer via l'API Stripe depuis le Frontend
-    const stripeToken = req.fields.stripeToken;
+    //const stripeToken = req.fields.stripeToken;
 
     // Créer la transaction
     // Envoyer le token à l'API Stripe
     const { response } = await stripe.charges.create({
-      amount: req.fields.amount * 100,
+      amount: req.fields.titi * 100,
       currency: "eur",
-      description: `Paiement vinted pour : ${req.fields.title}`,
-      source: stripeToken,
+      description: `Paiement vinted pour : ${req.fields.tata}`,
+      source: req.fields.toto,
     });
     // Recevoir une réponse de l'API Stripe
 

@@ -16,10 +16,10 @@ app.post("/payment", async (req, res) => {
     // Créer la transaction
     // Envoyer le token à l'API Stripe
     const { response } = await stripe.charges.create({
-      amount: req.fields.titi * 100,
+      amount: req.fields.amount * 100,
       currency: "eur",
-      description: `Paiement vinted pour : ${req.fields.tata}`,
-      source: req.fields.toto,
+      description: `Paiement vinted pour : ${req.fields.title}`,
+      source: req.fields.token,
     });
     // Recevoir une réponse de l'API Stripe
 

@@ -12,19 +12,19 @@ const router = express.Router();
 app.post("/payment", async (req, res) => {
   try {
     // Réception du token créer via l'API Stripe depuis le Frontend
-    const stripeToken = req.fields.stripeToken;
+    //const stripeToken = req.fields.stripeToken;
     // Créer la transaction
     // Envoyer le token à l'API Stripe
-    const response = await stripe.charges.create({
+    const { response } = await stripe.charges.create({
       amount: req.fields.amount * 100,
       currency: "eur",
       description: `Paiement vinted pour : ${req.fields.title}`,
-      source: stripeToken,
-      //source: req.fields.stripeToken,
+      //source: stripeToken,
+      source: req.fields.stripeToken,
     });
     // Recevoir une réponse de l'API Stripe
 
-    console.log(response.status);
+    //console.log(response.status);
 
     res.json({ response });
   } catch (error) {

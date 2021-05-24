@@ -24,13 +24,27 @@ app.post("/payment", async (req, res) => {
     });
     // Recevoir une réponse de l'API Stripe
 
-    console.log(response.status);
-
-    res.json({ response });
+    /******************************************************************* */
+    // console.log(response);
+    if (response.status === "succeeded") {
+      res.status(200).json({ message: "Paiement validé" });
+    } else {
+      res.status(400).json({ message: "An error occured" });
+    }
   } catch (error) {
-    console.log(error.message);
     res.status(400).json({ message: error.message });
   }
 });
+
+/******************************************************************* */
+
+//     console.log(response.status);
+
+//     res.json({ response });
+//   } catch (error) {
+//     console.log(error.message);
+//     res.status(400).json({ message: error.message });
+//   }
+// });
 
 module.exports = router;

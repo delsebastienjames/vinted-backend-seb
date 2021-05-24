@@ -5,8 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
 
 const router = express.Router();
 const app = express();
-// app.use(formidable());
-router.use(formidable());
+app.use(formidable());
 app.use(cors());
 
 app.post("/payment", async (req, res) => {

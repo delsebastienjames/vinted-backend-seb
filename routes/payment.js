@@ -25,7 +25,7 @@ app.post("/payment", async (req, res) => {
 
     console.log(response.data);
 
-    res.json(response.data);
+    res.status(200).json(response.data);
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ message: error.message });

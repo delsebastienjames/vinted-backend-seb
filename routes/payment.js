@@ -2,7 +2,6 @@ const express = require("express");
 const formidable = require("express-formidable");
 const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_API_SECRET);
-
 const router = express.Router();
 const app = express();
 app.use(formidable());

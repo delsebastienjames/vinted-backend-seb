@@ -7,7 +7,7 @@ const app = express();
 app.use(formidable());
 app.use(cors());
 
-app.post("/payment", async (req, res) => {
+router.post("/payment", async (req, res) => {
   try {
     // Réception du token créer via l'API Stripe depuis le Frontend
     //const stripeToken = req.fields.stripeToken;
